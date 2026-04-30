@@ -89,7 +89,7 @@ You can use as many timers on your slides as you want, as long as you use a uniq
 
 ## Credits
 
-Initially created by Joerg grosse Schlarmann ([produnis](https://github.com/produnis)) and extended by [@David-Rieger](https://github.com/David-Rieger) and [@nicebread](https://github.com/nicebread).
+Initially created by Joerg grosse Schlarmann ([produnis](https://github.com/produnis)) and extended by [@nicebread](https://github.com/nicebread) and [@David-Rieger](https://github.com/David-Rieger).
 
 ### License
 
