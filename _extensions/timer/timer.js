@@ -6,15 +6,27 @@ const FULL_DASH_ARRAY = 2 * Math.PI * 45;
 const THRESHOLDS = [10, 5];
 
 // Funktion zur Initialisierung des Timers in einem Container
-function initializeTimer(containerId, timeLimit, startOn) {
+function initializeTimer(containerId, timeLimit, startOn, size = "100%") {
 
   let active = true;
   let timePassed = 0;
   let timeLeft = timeLimit;
 
+  // Berechne die Größe basierend auf dem size-Parameter.
+  // Standardgröße des Timers ist 300px (entspricht 100%).
+  let timerSize = "300px";
+  if (size.endsWith("%")) {
+    const percent = parseFloat(size);
+    if (!isNaN(percent)) {
+      timerSize = `${(percent / 100) * 300}px`;
+    }
+  } else {
+    timerSize = size; // Fallback, falls jemand einen festen Wert wie "150px" angibt
+  }
+
   // Dynamisches Erstellen des Timer-HTML-Inhalts für jeden Container
   document.getElementById(containerId).innerHTML = `
-    <div class="base-timer">
+    <div class="base-timer" style="width: ${timerSize}; height: ${timerSize};">
       <svg id="${containerId}-timer-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
           <circle id="${containerId}-circle" class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
           <path
@@ -36,7 +48,7 @@ function initializeTimer(containerId, timeLimit, startOn) {
   });
 
   // Set the timer to inactive and then change to type slide
-  if ( startOn === "interaction" ) {
+  if (startOn === "interaction") {
     toggleTimer();
     startOn = "slide";
   }
@@ -99,9 +111,9 @@ function initializeTimer(containerId, timeLimit, startOn) {
   function setRemainingPathColor(timeLeft) {
     const pathId = `${containerId}-path-remaining`;
 
-    for ( let i = 0; i < THRESHOLDS.length; i+=1 ) {
+    for (let i = 0; i < THRESHOLDS.length; i += 1) {
       if (timeLeft < THRESHOLDS[i]) {
-        document.getElementById(pathId).classList.remove(`lvl${i-1}`);
+        document.getElementById(pathId).classList.remove(`lvl${i - 1}`);
         document.getElementById(pathId).classList.add(`lvl${i}`);
       }
     }

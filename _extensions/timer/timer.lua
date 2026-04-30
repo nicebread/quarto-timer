@@ -13,15 +13,16 @@ return {
                 local containerId = div.identifier
                 local timeLimit = tonumber(div.attributes["seconds"]) or 300  -- Default: 300 Sekunden
                 local startOn = div.attributes["starton"] or "slide" -- Default: timers run when visible
+                local size = div.attributes["size"] or "100%" -- Default: 100%
             
                 local htmlSnippet = string.format([[
                     <div id="%s"></div>
                     <script>
                         document.addEventListener("DOMContentLoaded", function () {
-                            initializeTimer("%s", %d, "%s");
+                            initializeTimer("%s", %d, "%s", "%s");
                         });
                     </script>
-                ]], containerId, containerId, timeLimit, startOn)
+                ]], containerId, containerId, timeLimit, startOn, size)
 
                 return pandoc.RawBlock("html", htmlSnippet)
             end
