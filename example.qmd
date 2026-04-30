@@ -158,3 +158,58 @@ You can use as many timers on your slides as you want, as long as a unique `UNIQ
 ::: {.timer #Timer5 seconds=60 starton=interaction}
 :::
 </div>
+
+## Extended Features
+
+This extended version of the Quarto Timer introduces three new features for more flexibility.
+
+Like the original timer, you can use these extensions via JavaScript or LUA.
+
+## Extended Customization
+
+In addition to duration and start behavior, you can now change:
+
+- The **size** of the timer (e.g., `size=50%`)
+- Whether to play an **audio notification** when finished (`sound=true`)
+
+Furthermore, every timer now automatically includes a **Reset Button** at the bottom. Clicking the timer toggles pause/play, while clicking the reset icon pauses and resets the timer to its initial state.
+
+## Extended JavaScript usage
+
+If you are using raw HTML/JavaScript, the `initializeTimer` function now accepts two additional parameters: `size` and `sound`.
+
+```{javascript}
+<div id="TimerExtendedJS"></div>
+<script src="_extensions/timer/timer.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // initializeTimer(ID, SECONDS, STARTON, SIZE, SOUND)
+        initializeTimer("TimerExtendedJS", 60, "slide", "50%", "true"); 
+    });
+</script>
+```
+
+## Extended LUA usage
+
+Adding the extended features with LUA takes the following form:
+
+```{markdown}
+::: {.timer #UNIQUE-ID seconds=300 starton=slide size=50% sound=true}
+:::
+```
+
+Customize the `UNIQUE-ID` and set the `seconds`, `starton`, `size`, and `sound`.
+
+## Extended LUA example
+
+Here is a working example combining the new features:
+
+```{markdown}
+::: {.timer #TimerExtended seconds=5 starton=interaction size=50% sound=true}
+:::
+```
+
+<div style="float: left; margin-top: 0.5em">
+::: {.timer #TimerExtended seconds=5 starton=interaction size=50% sound=true}
+:::
+</div>
