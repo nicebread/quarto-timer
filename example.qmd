@@ -144,7 +144,6 @@ You can use as many timers on your slides as you want, as long as a unique `UNIQ
 :::
 ::: {.timer #Timer5 seconds=60 starton=interaction}
 :::
- 
 ```
 
 <div style="float: left; margin-top: 0.5em">
@@ -159,4 +158,3 @@ You can use as many timers on your slides as you want, as long as a unique `UNIQ
 ::: {.timer #Timer5 seconds=60 starton=interaction}
 :::
 </div>
-

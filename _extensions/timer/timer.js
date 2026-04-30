@@ -6,12 +6,13 @@ const FULL_DASH_ARRAY = 2 * Math.PI * 45;
 const THRESHOLDS = [10, 5];
 
 // Funktion zur Initialisierung des Timers in einem Container
-function initializeTimer(containerId, timeLimit, startOn, size = "100%") {
+function initializeTimer(containerId, timeLimit, startOn, size = "100%", soundStr = "false") {
 
   let active = true;
   let timePassed = 0;
   let timeLeft = timeLimit;
   let timerId = null;
+  const playSound = (soundStr === "true");
 
   // Berechne die Größe basierend auf dem size-Parameter.
   // Standardgröße des Timers ist 300px (entspricht 100%).
@@ -77,6 +78,22 @@ function initializeTimer(containerId, timeLimit, startOn, size = "100%") {
 
       setCircleDasharray();
       setRemainingPathColor(timeLeft);
+
+      // Sound abspielen, wenn der Timer genau jetzt abgelaufen ist
+      if (timeLeft === 0 && playSound) {
+        // Pfad dynamisch bestimmen (relativ zum geladenen timer.js Script)
+        let soundUrl = "bing.wav";
+        const scripts = document.getElementsByTagName("script");
+        for (let i = 0; i < scripts.length; i++) {
+          if (scripts[i].src && scripts[i].src.includes("timer.js")) {
+            soundUrl = scripts[i].src.replace("timer.js", "bing.wav");
+            break;
+          }
+        }
+        
+        const audio = new Audio(soundUrl);
+        audio.play().catch(e => console.warn("Sound konnte nicht abgespielt werden:", e));
+      }
 
     }
     if (timeLeft > 0) {
