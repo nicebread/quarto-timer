@@ -86,3 +86,11 @@ Or inserting a timer that requires clicking to start:
 You can use as many timers on your slides as you want, as long as you use a unique `UNIQUE-ID` every time.
 
 ![multiple timers in action](https://www.produnis.de/blog/posts/2024-01-04-Revealjs-Timer/revealjstimer.jpg)
+
+## Credits
+
+Initially created by Joerg grosse Schlarmann ([produnis](https://github.com/produnis)) and extended by [@David-Rieger](https://github.com/David-Rieger) and [@nicebread](https://github.com/nicebread).
+
+### License
+
+This project is licensed under the MIT License.
