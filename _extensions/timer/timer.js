@@ -11,6 +11,7 @@ function initializeTimer(containerId, timeLimit, startOn, size = "100%") {
   let active = true;
   let timePassed = 0;
   let timeLeft = timeLimit;
+  let timerId = null;
 
   // Berechne die Größe basierend auf dem size-Parameter.
   // Standardgröße des Timers ist 300px (entspricht 100%).
@@ -38,13 +39,22 @@ function initializeTimer(containerId, timeLimit, startOn, size = "100%") {
           <text id="${containerId}-label" x="50%" y ="50%" dominant-baseline="middle" text-anchor="middle">
             ${formatTime(timeLeft)}
           </text>
-        </g>
+          <g id="${containerId}-reset" class="timer-reset" transform="translate(44, 72) scale(0.5)">
+            <circle class="timer-reset-bg" cx="12" cy="12" r="16"></circle>
+            <path class="timer-reset-icon" d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path class="timer-reset-icon" d="M3 3v5h5"></path>
+          </g>
       </svg>
     </div>
     `;
 
   document.getElementById(`${containerId}-timer-svg`).addEventListener("click", (event) => {
     toggleTimer();
+  });
+
+  document.getElementById(`${containerId}-reset`).addEventListener("click", (event) => {
+    event.stopPropagation();
+    resetTimer();
   });
 
   // Set the timer to inactive and then change to type slide
@@ -54,7 +64,7 @@ function initializeTimer(containerId, timeLimit, startOn, size = "100%") {
   }
 
   // Startet den Timer für einen bestimmten Container
-  (function startTimer() {
+  function startTimer() {
     // only advance time when focus is required and slide is in focus
     if (active && (startOn === 'presentation' || (startOn === 'slide' && !isHidden()))) {
 
@@ -70,9 +80,14 @@ function initializeTimer(containerId, timeLimit, startOn, size = "100%") {
 
     }
     if (timeLeft > 0) {
-      setTimeout(startTimer, 1000);
+      timerId = setTimeout(startTimer, 1000);
+    } else {
+      timerId = null;
     }
-  }());
+  }
+
+  // Initialer Start des Timers
+  startTimer();
 
   function isHidden() {
     let timecont = document.getElementById(containerId);
@@ -92,6 +107,30 @@ function initializeTimer(containerId, timeLimit, startOn, size = "100%") {
       document.getElementById(`${containerId}-circle`).style.fill = '';
     }
     active = !active;
+  }
+
+  function resetTimer() {
+    timePassed = 0;
+    timeLeft = timeLimit;
+    active = false; // Pausiere den Timer beim Zurücksetzen
+    
+    document.getElementById(`${containerId}-label`).innerHTML = formatTime(timeLeft);
+    setCircleDasharray();
+    
+    // Setze die Farben zurück
+    const pathId = `${containerId}-path-remaining`;
+    for (let i = 0; i < THRESHOLDS.length; i += 1) {
+      document.getElementById(pathId).classList.remove(`lvl${i - 1}`);
+      document.getElementById(pathId).classList.remove(`lvl${i}`);
+    }
+    
+    // Füllung zurücksetzen (wie im pausierten Zustand)
+    document.getElementById(`${containerId}-circle`).style.fill = '#fcb';
+    
+    // Wenn der Timer schon abgelaufen war, müssen wir den Loop neu starten
+    if (timerId === null) {
+      startTimer();
+    }
   }
 
   // Funktion zur Formatierung der verbleibenden Zeit
