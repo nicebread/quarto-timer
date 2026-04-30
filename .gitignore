@@ -3,3 +3,4 @@ example.html
 /.luarc.json
 .Rproj.user
 .Rhistory
+*.quarto_ipynb
