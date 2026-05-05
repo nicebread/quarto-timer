@@ -108,7 +108,6 @@ function initializeTimer(containerId, timeLimit, startOn, size = "100%", soundSt
     let timecont = document.getElementById(containerId);
     let ancestor = timecont.parentNode;
 
-    // look if the section element, the 'slide', is visible
     while (ancestor.tagName !== "SECTION") {
       ancestor = ancestor.parentNode;
     }
