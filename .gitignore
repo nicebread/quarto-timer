@@ -4,3 +4,5 @@ example.html
 .Rproj.user
 .Rhistory
 *.quarto_ipynb*
+/.quarto/
+**/*.quarto_ipynb
