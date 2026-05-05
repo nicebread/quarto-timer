@@ -17,7 +17,20 @@ return {
                 local size = div.attributes["size"] or "100%" -- Default: 100%
                 local sound = div.attributes["sound"] or "false" -- Default: kein Sound
             
-                local htmlSnippet = string.format([[
+                local b64_script = ""
+                if not _G.quartoTimerSoundInjected and sound == "true" then
+                    local dir = pandoc.path.directory(PANDOC_SCRIPT_FILE)
+                    local file_path = pandoc.path.join({dir, "bing.wav"})
+                    local f = io.open(file_path, "rb")
+                    if f then
+                        local sound_base64 = "data:audio/wav;base64," .. quarto.base64.encode(f:read("*all"))
+                        f:close()
+                        b64_script = '\n<script>window.quartoTimerSound = "' .. sound_base64 .. '";</script>\n'
+                    end
+                    _G.quartoTimerSoundInjected = true
+                end
+
+                local htmlSnippet = b64_script .. string.format([[
                     <div id="%s"></div>
                     <script>
                         document.addEventListener("DOMContentLoaded", function () {

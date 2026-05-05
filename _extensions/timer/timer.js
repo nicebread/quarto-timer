@@ -81,12 +81,15 @@ function initializeTimer(containerId, timeLimit, startOn, size = "100%", soundSt
 
       // Sound abspielen, wenn der Timer genau jetzt abgelaufen ist
       if (timeLeft === 0 && playSound) {
-        let soundUrl = "bing.wav";
-        const scripts = document.getElementsByTagName("script");
-        for (let i = 0; i < scripts.length; i++) {
-          if (scripts[i].src && scripts[i].src.includes("timer.js")) {
-            soundUrl = scripts[i].src.replace("timer.js", "bing.wav");
-            break;
+        let soundUrl = window.quartoTimerSound;
+        if (!soundUrl) {
+          soundUrl = "bing.wav";
+          const scripts = document.getElementsByTagName("script");
+          for (let i = 0; i < scripts.length; i++) {
+            if (scripts[i].src && scripts[i].src.includes("timer.js")) {
+              soundUrl = scripts[i].src.replace("timer.js", "bing.wav");
+              break;
+            }
           }
         }
         const audio = new Audio(soundUrl);
