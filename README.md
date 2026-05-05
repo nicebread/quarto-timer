@@ -8,7 +8,7 @@ This extension provides the ability to add visible progress timers to your slide
 In the RStudio terminal:
 
 ```
-$ quarto add produnis/quarto-timer
+$ quarto add nicebread/quarto-timer
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ If you want to add a timer in raw HTML, you can use the following code snippet i
 
 ```
 <div id="UNIQUE-ID"></div>
-<script src="_extensions/produnis/timer/timer.js"></script>
+<script src="_extensions/nicebread/timer/timer.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         initializeTimer("UNIQUE-ID", SECONDS, STARTON); 
@@ -42,7 +42,7 @@ Here is an example of a 4 minute timer that start when the slide is on focus:
 ```
 Please think about this for 4 minutes.
 <div id="4minWaiting"></div>
-<script src="_extensions/produnis/timer/timer.js"></script>
+<script src="_extensions/nicebread/timer/timer.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         initializeTimer("4minWaiting", 240, "slide"); 

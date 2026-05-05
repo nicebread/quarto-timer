@@ -21,7 +21,7 @@ This might be helpful, if, for example, you want your audience to think about a 
 In RStudio terminal enter the following to download and add extension to the current project:
 
 ```{terminal}
-$ quarto add produnis/quarto-timer
+$ quarto add nicebread/quarto-timer
  
 ```
 
