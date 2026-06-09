@@ -22,12 +22,11 @@ In RStudio terminal enter the following to download and add extension to the cur
 
 ```{terminal}
 $ quarto add nicebread/quarto-timer
- 
 ```
 
 Go ahead and do it now. You have 15 seconds.
 
-::: {.timer #TimerInstall seconds=15}
+::: {.timer #TimerInstall seconds=15 sound=true}
 :::
 
 ## JavaScript and LUA usage
@@ -47,7 +46,7 @@ You can change two features of timers individually:
 - When they will be active:
   - From the start of a `presentation`
   - When the `slide` is visible
-  - On `interaction`, clicking on the timer
+  - On `interaction`, clicking on the play/pause button
 
 ## JavaScript usage
 
@@ -172,7 +171,7 @@ In addition to duration and start behavior, you can now change:
 - The **size** of the timer (e.g., `size=50%`)
 - Whether to play an **audio notification** when finished (`sound=true`)
 
-Furthermore, every timer now automatically includes a **Reset Button** at the bottom. Clicking the timer toggles pause/play, while clicking the reset icon pauses and resets the timer to its initial state.
+Furthermore, every timer now automatically includes a **Play/Pause Button** at the top and a **Reset Button** at the bottom. Clicking the play/pause button toggles play/pause, while clicking the reset icon pauses and resets the timer to its initial state.
 
 ## Extended JavaScript usage
 

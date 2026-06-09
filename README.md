@@ -35,7 +35,7 @@ If you want to add a timer in raw HTML, you can use the following code snippet i
 
 - From the start of a `presentation`
 - When the `slide` is visible
-- On `interaction`, clicking on the timer
+- On `interaction`, clicking on the play/pause button
 
 Here is an example of a 4 minute timer that start when the slide is on focus:
 
@@ -76,7 +76,7 @@ The example below starts when the slide or page becomes visible.
 :::
 ```
 
-Or inserting a timer that requires clicking to start:
+Or inserting a timer that requires clicking the play/pause button to start:
 
 ```
 :::{.timer #UNIQUE-ID seconds=100 starton=interaction}
@@ -91,7 +91,7 @@ You can use as many timers on your slides as you want, as long as you use a uniq
 
 This extended version of the timer includes three new features extending the original tool:
 
-1. **Default Reset Button**: A small reset icon is automatically added to the bottom of every timer. Clicking the timer toggles pause/play, while clicking the reset icon pauses and resets the timer to its initial state.
+1. **Default Play/Pause & Reset Buttons**: A small play/pause button is automatically added to the top and a small reset icon is automatically added to the bottom of every timer. Clicking the play/pause button toggles play/pause, while clicking the reset icon pauses and resets the timer to its initial state.
 2. **Variable Size**: You can scale the timer by passing a `size` attribute. By default, it is `100%` (which corresponds to 300px).
 3. **Optional Sound**: You can enable an audio notification (`bing.wav`) when the timer finishes by passing `sound=true`.
 
